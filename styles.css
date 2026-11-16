@@ -7,6 +7,9 @@ body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50
 /* Escena: el sobre queda centrado verticalmente */
 .scene{position:relative;width:var(--ew);height:calc(var(--ew)*.68);margin:calc((100vh - var(--ew)*.68)/2) auto 0;margin-top:calc((100svh - var(--ew)*.68)/2);perspective:1100px}
 .layer{position:absolute;inset:0}
+.tag{position:absolute;top:calc(100% + 34px);left:-6%;width:112%;margin:0;text-align:center;font:500 12px/1.6 'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;color:#E8D9B5;transition:opacity .6s}
+.tag::before{content:"";display:block;width:56px;height:1px;margin:0 auto 14px;background:var(--gold)}
+.seal-off .tag{opacity:0}
 .church{position:absolute;bottom:calc(100% + 36px);width:112%;left:-6%;margin:0;text-align:center;font:500 11px/1.6 'Cinzel',serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);transition:opacity .6s}
 @keyframes pulse{50%{opacity:.45}}
 
@@ -35,34 +38,52 @@ body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50
 .out .letter{transform:translate(-50%,var(--fy,0px)) scale(1);transition-duration:1.5s}
 .out .env-back,.out .env-front,.out .flap,.out .seal{opacity:0}
 
-/* Hoja de pergamino */
-.letter{padding:44px 34px 36px;color:var(--ink);text-align:center;border-radius:4px;background:radial-gradient(ellipse at 50% 40%,#FBF3DD 0%,#F3E6C3 68%,#E2CD98 100%);box-shadow:inset 0 0 46px rgba(120,80,20,.32),0 14px 34px rgba(0,0,0,.55)}
+/* Hoja de pergamino: SIEMPRE cuadrada. Todo se mide en "em" y el em depende del ancho,
+   así la carta escala completa y mantiene su forma en cualquier pantalla. */
+.letter{--lw:min(92vw,520px);font-size:calc(var(--lw)*.039);aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1.15em 1.9em;color:var(--ink);text-align:center;border-radius:4px;background:radial-gradient(ellipse at 50% 38%,#FDF6E2 0%,#F3E6C3 66%,#E2CD98 100%);box-shadow:inset 0 0 46px rgba(120,80,20,.32),0 14px 34px rgba(0,0,0,.55)}
 .letter::before{content:"";position:absolute;inset:0;border-radius:4px;pointer-events:none;mix-blend-mode:multiply;opacity:.35;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/><feColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .15 0 0 0 .5 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>")}
-.letter>*{position:relative}
-.cross{display:block;margin:0 auto 10px}
-h1{margin:0;font:700 clamp(22px,6vw,30px)/1.2 'Cinzel',serif;letter-spacing:.08em}
-.rule{margin:16px auto;display:flex;align-items:center;gap:10px;max-width:220px}
+.letter>*{position:relative;max-width:100%}
+.letter>.frame{position:absolute;inset:.6em;border:2px solid rgba(138,95,18,.75);border-radius:2px;pointer-events:none;max-width:none}
+.frame::before{content:"";position:absolute;inset:.25em;border:1px solid rgba(181,138,46,.7)}
+.frame::after{content:"";position:absolute;left:50%;top:-.42em;width:.62em;height:.62em;margin-left:-.31em;transform:rotate(45deg);background:#B58A2E;box-shadow:0 0 0 .18em #F6EBCB}
+
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:.7em;margin:0;font:700 .72em/1 'Cinzel',serif;letter-spacing:.26em;color:#8A5F12}
+.eyebrow .cross{width:.95em;height:1.3em;flex:none}
+.eyebrow::before,.eyebrow::after{content:"";width:2.4em;height:1px;background:linear-gradient(90deg,transparent,#B58A2E)}
+.eyebrow::after{background:linear-gradient(270deg,transparent,#B58A2E)}
+h1{margin:.4em 0 0;font:700 1.55em/1.1 'Cinzel',serif;letter-spacing:.07em;color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.5)}
+.rule{margin:.4em auto .4em;display:flex;align-items:center;gap:.6em;width:9em}
 .rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#B58A2E)}
 .rule::after{background:linear-gradient(270deg,transparent,#B58A2E)}
-.rule span{width:7px;height:7px;transform:rotate(45deg);background:#B58A2E}
-.letter p{margin:0 0 14px;font-size:clamp(18px,4.6vw,21px);line-height:1.45;font-weight:500}
-.letter .greet{text-align:left;font-weight:700}
-.letter .para{text-align:left}
-blockquote{margin:0 0 18px;padding:0 6px}
-blockquote p{font-style:italic;margin-bottom:6px!important}
-.address{margin:22px auto 0!important;max-width:340px;font-size:15px!important;line-height:1.35!important;font-style:italic;color:#72552a}
-.schedule[hidden]{display:none}
-cite{display:block;font:500 13px 'Cinzel',serif;letter-spacing:.12em;color:#8A5F12;font-style:normal}
-.closing{margin:18px 0 0!important;font-style:italic}
-.sign{font-weight:700!important;margin-bottom:6px!important}
-.schedule{margin-top:20px;padding-top:18px;border-top:1px solid rgba(181,138,46,.6)}
-h2{margin:0 0 12px;font:700 14px 'Cinzel',serif;letter-spacing:.2em;color:#8A5F12}
-ul{list-style:none;margin:0;padding:0}
-li{margin:0 0 10px;font-size:clamp(17px,4.4vw,20px);line-height:1.35}
-li b{display:block;font-family:'Cinzel',serif;font-size:.8em;letter-spacing:.1em}
-.again{margin-top:22px;padding:13px 22px;max-width:100%;font:700 12px 'Cinzel',serif;letter-spacing:.16em;color:#F3E6C3;background:#3B2A1A;border:1px solid #B58A2E;border-radius:999px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.again:focus-visible{outline:2px solid #8A5F12;outline-offset:3px}
+.rule span{width:.45em;height:.45em;transform:rotate(45deg);background:#B58A2E}
+
+blockquote{margin:0 0 .6em;padding:0}
+blockquote p{margin:0 0 .15em;font-size:.98em;line-height:1.25;font-style:italic;font-weight:500}
+cite{display:block;font:500 .62em 'Cinzel',serif;letter-spacing:.14em;color:#8A5F12;font-style:normal}
+
+/* Tarjeta de la fecha: es lo primero que debe verse */
+.event{width:100%;margin:0 0 .65em;padding:.65em .8em .6em;border-radius:.35em;border:1px solid #C9A24D;background:radial-gradient(ellipse at 50% 0%,#3A2A19 0%,#1B120A 78%);box-shadow:0 .3em .9em rgba(60,35,5,.45),inset 0 0 0 .22em #1B120A,inset 0 0 0 .27em rgba(201,162,77,.55)}
+.event p{margin:0}
+.ev-label{font:700 .62em/1.5 'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A24D}
+.ev-day{margin-top:.15em!important;font:700 1.8em/1.1 'Cormorant Garamond',Georgia,serif;color:#F7E4A6;text-shadow:0 0 .8em rgba(201,162,77,.35)}
+.ev-time{margin-top:.1em!important;font:700 1em/1.2 'Cinzel',serif;letter-spacing:.2em;color:#FFF3CC}
+.ev-place{margin-top:.4em!important;font:500 .8em/1.25 'Cormorant Garamond',Georgia,serif;font-style:italic;color:#D9C48F}
+
+.pledge{margin:0 0 .6em;font-size:1em;line-height:1.28;font-weight:500}
+.pledge strong{font-weight:700}
+
+.rsvp{margin:0;padding:.85em 1.7em;max-width:100%;font:700 .78em/1 'Cinzel',serif;letter-spacing:.18em;color:#2A1A0B;background:linear-gradient(180deg,#E9C877,#C79A3A);border:1px solid #8A5F12;border-radius:999px;box-shadow:0 .25em .7em rgba(90,55,5,.4),inset 0 1px 0 rgba(255,255,255,.55);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,filter .2s}
+.rsvp:hover{filter:brightness(1.06)}
+.rsvp:active{transform:scale(.97)}
+.rsvp:focus-visible{outline:2px solid #3B2A1A;outline-offset:3px}
+.rsvp.done{background:#3B2A1A;color:#F3DFA0;border-color:#C9A24D;box-shadow:none;cursor:default}
+.sign{margin:.55em 0 0;font-size:.95em;line-height:1.2;font-style:italic}
+.sign b{font-style:normal;font-weight:700}
+
+/* Botón para cerrar: fuera de la hoja, debajo, para no restarle espacio */
+.letter>.again{position:absolute;left:50%;top:calc(100% + 1.4em);transform:translateX(-50%);margin:0;padding:12px 20px;font:700 11px 'Cinzel',serif;letter-spacing:.16em;white-space:nowrap;color:#E8D9B5;background:rgba(20,14,9,.6);border:1px solid rgba(201,162,77,.7);border-radius:999px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.again:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 /* Accesibilidad: sin animaciones para quien las reduce */
-@media(max-width:380px){.letter{padding:34px 22px 28px}.church{font-size:9px;letter-spacing:.1em}.seal{width:92px;height:92px;margin:-46px 0 0 -46px}.seal-text{font-size:8.5px;letter-spacing:.06em}}
+@media(max-width:380px){.tag{font-size:10px;letter-spacing:.14em}.church{font-size:9px;letter-spacing:.1em}.seal{width:92px;height:92px;margin:-46px 0 0 -46px}.seal-text{font-size:8.5px;letter-spacing:.06em}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01s!important;transition-delay:0s!important;animation:none!important}}

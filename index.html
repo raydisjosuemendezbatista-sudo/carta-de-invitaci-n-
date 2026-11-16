@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Una carta de bienvenida | La Luz Verdadera</title>
-<meta name="description" content="Una carta especial de bienvenida para quienes comienzan a caminar con Cristo.">
-<meta property="og:title" content="Una carta de bienvenida">
-<meta property="og:description" content="Una carta especial de bienvenida para quienes comienzan a caminar con Cristo.">
+<title>Estás invitado | Culto especial de bienvenida | La Luz Verdadera</title>
+<meta name="description" content="Culto especial de bienvenida para nuevos creyentes. Sábado 28 de noviembre, 6:00 p. m. Iglesia La Luz Verdadera, Barahona.">
+<meta property="og:title" content="Estás invitado: culto especial de bienvenida">
+<meta property="og:description" content="Para nuevos creyentes. Sábado 28 de noviembre, 6:00 p. m. Aparta la fecha y ven con el corazón dispuesto.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://raydisjosuemendezbatista-sudo.github.io/carta-de-invitaci-n-/">
 <meta property="og:image" content="https://raydisjosuemendezbatista-sudo.github.io/carta-de-invitaci-n-/preview.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Sobre con sello rojo y cruz: carta de bienvenida de la Iglesia de Dios Pentecostal La Luz Verdadera">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="Sobre con sello rojo y cruz: invitación al culto especial de bienvenida, sábado 28 de noviembre, Iglesia de Dios Pentecostal La Luz Verdadera">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raydisjosuemendezbatista-sudo.github.io/carta-de-invitaci-n-/preview.jpg">
 <meta name="theme-color" content="#0d0a08">
@@ -31,19 +31,29 @@
 
   <div class="letter-clip" id="letterClip" aria-hidden="true">
     <article class="letter" id="letter">
-      <svg class="cross" viewBox="0 0 24 32" width="22" height="30" aria-hidden="true"><path d="M12 2v28M5 11h14" stroke="#8A5F12" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+      <div class="frame" aria-hidden="true"></div>
+
+      <p class="eyebrow">
+        <svg class="cross" viewBox="0 0 24 32" width="14" height="19" aria-hidden="true"><path d="M12 2v28M5 11h14" stroke="#8A5F12" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
+        <span id="eyebrow"></span>
+      </p>
       <h1 id="title"></h1>
       <div class="rule"><span></span></div>
-      <div id="body"></div>
-      <div class="rule"><span></span></div>
+
       <blockquote><p id="verse"></p><cite id="ref"></cite></blockquote>
-      <p class="closing" id="closing"></p>
-      <p class="sign" id="sign"></p>
-      <p class="address" id="address"></p>
-      <section class="schedule" id="scheduleSection">
-        <h2>HORARIOS DE REUNIÓN</h2>
-        <ul id="schedule"></ul>
+
+      <section class="event" id="event" aria-label="Fecha y hora del culto">
+        <p class="ev-label" id="evLabel"></p>
+        <p class="ev-day" id="evDay"></p>
+        <p class="ev-time" id="evTime"></p>
+        <p class="ev-place" id="evPlace"></p>
       </section>
+
+      <p class="pledge"><strong id="pledgeStrong"></strong> <span id="pledgeText"></span></p>
+
+      <button class="rsvp" id="rsvp" type="button"></button>
+      <p class="sign"><span id="closing"></span> <b id="sign"></b></p>
+
       <button class="again" id="again" type="button">CERRAR Y VOLVER A EMPEZAR</button>
     </article>
   </div>
@@ -58,7 +68,8 @@
   </div>
   <div class="flap"></div>
   <div class="seal" aria-hidden="true"><span class="seal-text">TOCA<br>EL SOBRE<br>PARA ABRIR</span></div>
-  <button class="hit" id="open" type="button" aria-label="Abrir la carta de bienvenida"></button>
+  <p class="tag" id="tag"></p>
+  <button class="hit" id="open" type="button" aria-label="Abrir la invitación"></button>
 </main>
 <script src="script.js"></script>
 </body>
