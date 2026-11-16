@@ -14,8 +14,8 @@ body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50
 @keyframes pulse{50%{opacity:.45}}
 
 /* Sobre */
-.env-back{z-index:1;border-radius:6px;background:linear-gradient(160deg,#EFE2C0,#D6C08A);box-shadow:0 26px 50px rgba(0,0,0,.65);transition:opacity .8s}
-.env-front{z-index:3;transition:opacity .8s}
+.env-back{z-index:1;border-radius:6px;background:linear-gradient(160deg,#EFE2C0,#D6C08A);box-shadow:0 26px 50px rgba(0,0,0,.65);transition:opacity .8s,transform .9s ease-in-out}
+.env-front{z-index:3;transition:opacity .8s,transform .9s ease-in-out}
 .env-front svg{display:block;filter:drop-shadow(0 -2px 4px rgba(0,0,0,.15))}
 .flap{position:absolute;inset:0;z-index:4;clip-path:polygon(0 0,100% 0,50% 58%);transform-origin:50% 0;background:linear-gradient(180deg,#F2E6C8,#D9C28B);transition:transform .9s ease-in-out,z-index 0s .45s,opacity .8s}
 .seal{position:absolute;left:50%;top:58%;width:104px;height:104px;margin:-52px 0 0 -52px;z-index:6;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#B3302A,#7A1713 72%);box-shadow:0 4px 10px rgba(0,0,0,.5),inset 0 0 0 4px rgba(0,0,0,.14),inset 0 0 0 7px rgba(255,255,255,.07);transition:opacity .5s,transform .5s}
@@ -35,8 +35,12 @@ body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50
 .letter{position:absolute;left:50%;top:6%;width:var(--lw);transform-origin:50% 0;transform:translate(-50%,0) scale(var(--s0,.7));transition:transform 1.2s cubic-bezier(.45,.05,.2,1)}
 .rise .letter{transform:translate(-50%,var(--rise,-120px)) scale(var(--s0,.7))}
 .out .letter-clip{z-index:5;pointer-events:auto;clip-path:inset(-3000% -100% -3000% -100%)}
+/* Al cerrar: la carta se encoge POR ENCIMA del sobre (que reaparece detrás) y solo después baja al bolsillo */
+.ret .letter-clip{z-index:5;clip-path:inset(-3000% -100% -3000% -100%)}
 .out .letter{transform:translate(-50%,var(--fy,0px)) scale(1);transition-duration:1.5s}
-.out .env-back,.out .env-front,.out .flap,.out .seal{opacity:0}
+.out .env-back,.out .env-front{opacity:0;transform:translateY(9%)}
+.out .flap{opacity:0;transform:translateY(9%) rotateX(180deg)}
+.out .seal{opacity:0}
 
 /* Hoja de pergamino: SIEMPRE cuadrada. Todo se mide en "em" y el em depende del ancho,
    así la carta escala completa y mantiene su forma en cualquier pantalla. */
@@ -65,10 +69,10 @@ cite{display:block;font:700 .64em 'Cinzel',serif;letter-spacing:.14em;color:#5E3
 .event{width:100%;margin:0 0 .5em;padding:.55em .8em .5em;border-radius:.35em;border:1px solid #C9A24D;background:radial-gradient(ellipse at 50% 0%,#3A2A19 0%,#1B120A 78%);box-shadow:0 .3em .9em rgba(60,35,5,.45),inset 0 0 0 .22em #1B120A,inset 0 0 0 .27em rgba(201,162,77,.55)}
 .event p{margin:0}
 .ev-label{font:700 .62em/1.5 'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A24D}
-.ev-day{margin-top:.15em!important;font:700 1.8em/1.1 'Cormorant Garamond',Georgia,serif;color:#F7E4A6;text-shadow:0 0 .8em rgba(201,162,77,.35)}
-.ev-time{margin-top:.1em!important;font:700 1em/1.2 'Cinzel',serif;letter-spacing:.2em;color:#FFF3CC}
+.ev-day{margin-top:.15em!important;font:700 1.8em/1.1 'Cormorant Garamond',Georgia,serif;color:#EBD594}
+.ev-time{margin-top:.1em!important;font:700 1em/1.2 'Cinzel',serif;letter-spacing:.2em;color:#E6D9B2}
 .ev-place{margin-top:.4em!important;font:500 .8em/1.25 'Cormorant Garamond',Georgia,serif;font-style:italic;color:#D9C48F}
-.ev-dress{margin-top:.2em!important;font:italic 700 .74em/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:.03em;color:#FFFFFF;text-shadow:0 0 .6em rgba(255,255,255,.35)}
+.ev-dress{margin-top:.2em!important;font:italic 700 .74em/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:.03em;color:#DDD0A8}
 
 .pledge{margin:0 0 .4em;font-size:1em;line-height:1.28;font-weight:500}
 .pledge strong{font-weight:700}

@@ -119,12 +119,17 @@ const CONFIG = {
 
   // Calcula tamaños según la pantalla (escala inicial, subida y posición final)
   function measure() {
-    const s0 = (scene.offsetWidth * 0.88) / letter.offsetWidth;
-    const top = scene.getBoundingClientRect().top + window.scrollY;
+    // La hoja cabe DENTRO del sobre: 66% de su ancho (antes 88%, más grande que el sobre)
+    const s0 = (scene.offsetWidth * 0.66) / letter.offsetWidth;
+    const vtop = scene.getBoundingClientRect().top;
+    const top = vtop + window.scrollY;
+    const H = scene.offsetHeight, h = letter.offsetHeight * s0;
+    // Sube lo suficiente para quedar TOTALMENTE fuera del bolsillo (sin salirse por arriba de la pantalla)
+    const rise = Math.max(Math.round(0.12 * H - h), -Math.round(vtop + 0.06 * H - 10));
     // Centra la carta en la pantalla (deja espacio abajo para el botón de cerrar)
     const y = Math.max(16, Math.round((window.innerHeight - letter.offsetHeight - 60) / 2));
     scene.style.setProperty("--s0", s0.toFixed(3));
-    scene.style.setProperty("--rise", -Math.round(scene.offsetHeight * 0.5) + "px");
+    scene.style.setProperty("--rise", rise + "px");
     scene.style.setProperty("--fy", Math.round(y - top - scene.offsetHeight * 0.06) + "px");
   }
 
@@ -148,9 +153,11 @@ const CONFIG = {
     clip.setAttribute("aria-hidden", "true");
     window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); await wait(500);
     measure();
-    scene.classList.remove("out");       await wait(1550); // la hoja vuelve a su tamaño
+    scene.classList.add("ret");                            // la hoja sigue por encima del sobre
+    scene.classList.remove("out");       await wait(1500); // se encoge; el sobre reaparece detrás
     document.body.style.minHeight = "";
-    scene.classList.remove("rise");      await wait(1250); // entra al sobre
+    scene.classList.remove("ret");                         // ahora sí queda detrás del bolsillo
+    scene.classList.remove("rise");      await wait(1250); // baja y entra al sobre
     scene.classList.remove("flap-open"); await wait(950);  // se cierra la solapa
     clip.classList.remove("show");
     scene.classList.remove("seal-off");  await wait(500);  // vuelve el sello
