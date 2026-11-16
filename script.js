@@ -2,22 +2,22 @@
    CONFIGURACIÓN — edita aquí todos los textos y horarios
    ===================================================== */
 const CONFIG = {
-  churchName: "Iglesia de Dios Pentecostal La Luz Verdadera Inc. · Discípulos de Cristo",
-  title: "BIENVENIDOS A LA FAMILIA DE CRISTO",
-  greeting: "Queridos hermanos Arnold y Daneiri:",
+  churchName: "Iglesia de Dios Pentecostal La Luz Verdadera Inc.",
+  title: "BIENVENIDO A LA FAMILIA",
+  greeting: "Querido hermano(a):",
   paragraphs: [
-    "Nos alegra recibirlos y saber que se acercan a Jesucristo. No están solos: aquí tienen una familia dispuesta a caminar, orar y crecer con ustedes en la fe.",
-    "Los invitamos a un culto preparado especialmente para darles la bienvenida."
+    "Nos alegra recibirte y saber que has dado pasos para acercarte a Jesucristo. Queremos que sepas que no estás solo: aquí encontrarás una comunidad dispuesta a caminar contigo, orar contigo y animarte a crecer en la fe.",
+    "Te animamos a conocer cada día más la Palabra de Dios, cultivar una vida de oración y congregarte. La vida cristiana es un camino de crecimiento; permite que la Biblia sea tu guía y que Cristo sea el centro de tu vida.",
+    "Si tienes preguntas o necesitas acompañamiento, acércate a nosotros. Será un privilegio servirte y compartir contigo esta nueva etapa."
   ],
   verse: "«De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas». ",
   reference: "2 Corintios 5:17 (RVR1960)",
   closing: "Con amor fraternal,",
-  signature: "Discípulos de Cristo · Iglesia La Luz Verdadera",
+  signature: "Iglesia La Luz Verdadera",
   address: "Prolongación Avenida Luperón #75, Pueblo Nuevo, Barahona, República Dominicana.",
-  scheduleTitle: "TE ESPERAMOS",
-  schedule: [
-    { day: "Sábado 28 de noviembre", activity: "Culto de bienvenida para Arnold y Daneiri", time: "6:00 p. m." }
-  ]
+  scheduleTitle: "HORARIOS DE REUNIÓN",
+  // Agrega aquí los días y horarios reales de la iglesia.
+  schedule: []
 };
 
 /* ===================== Lógica ===================== */
@@ -46,7 +46,7 @@ const CONFIG = {
   CONFIG.schedule.forEach((s) => {
     const li = document.createElement("li");
     const b = document.createElement("b"); b.textContent = s.day;
-    li.append(b, s.time ? s.activity + " — " + s.time : s.activity);
+    li.append(b, s.activity + " — " + s.time);
     ul.appendChild(li);
   });
 
