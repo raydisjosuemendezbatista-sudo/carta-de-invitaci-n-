@@ -119,8 +119,8 @@ const CONFIG = {
 
   // Calcula tamaños según la pantalla (escala inicial, subida y posición final)
   function measure() {
-    // La hoja cabe DENTRO del sobre: 66% de su ancho (antes 88%, más grande que el sobre)
-    const s0 = (scene.offsetWidth * 0.66) / letter.offsetWidth;
+    // Ancho de la hoja dentro del sobre: 90% del ancho del sobre
+    const s0 = (scene.offsetWidth * 0.90) / letter.offsetWidth;
     const vtop = scene.getBoundingClientRect().top;
     const top = vtop + window.scrollY;
     const H = scene.offsetHeight, h = letter.offsetHeight * s0;

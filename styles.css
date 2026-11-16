@@ -30,17 +30,15 @@ body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50
 .flap-open .flap{transform:rotateX(180deg);z-index:1}
 
 /* La carta sale por detrás del bolsillo (clip-path recorta lo que queda debajo del sobre) */
-.letter-clip{position:absolute;inset:0;z-index:2;visibility:hidden;pointer-events:none;clip-path:inset(-3000% -100% 0 -100%);transition:clip-path 1.4s ease}
+.letter-clip{position:absolute;inset:0;z-index:2;visibility:hidden;pointer-events:none;clip-path:inset(-3000% -100% 0 -100%)}
 .letter-clip.show{visibility:visible}
 .letter{position:absolute;left:50%;top:6%;width:var(--lw);transform-origin:50% 0;transform:translate(-50%,0) scale(var(--s0,.7));transition:transform 1.2s cubic-bezier(.45,.05,.2,1)}
 .rise .letter{transform:translate(-50%,var(--rise,-120px)) scale(var(--s0,.7))}
-.out .letter-clip{z-index:5;pointer-events:auto;clip-path:inset(-3000% -100% -3000% -100%)}
+.out .letter-clip{z-index:5;pointer-events:auto;clip-path:inset(-3000% -100% -3000% -100%);transition:clip-path 1.4s ease}
 /* Al cerrar: la carta se encoge POR ENCIMA del sobre (que reaparece detrás) y solo después baja al bolsillo */
 .ret .letter-clip{z-index:5;clip-path:inset(-3000% -100% -3000% -100%)}
 .out .letter{transform:translate(-50%,var(--fy,0px)) scale(1);transition-duration:1.5s}
-.out .env-back,.out .env-front{opacity:0;transform:translateY(9%)}
-.out .flap{opacity:0;transform:translateY(9%) rotateX(180deg)}
-.out .seal{opacity:0}
+.out .env-back,.out .env-front,.out .flap,.out .seal{opacity:0}
 
 /* Hoja de pergamino: SIEMPRE cuadrada. Todo se mide en "em" y el em depende del ancho,
    así la carta escala completa y mantiene su forma en cualquier pantalla. */
