@@ -47,7 +47,7 @@ body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50
 .frame::before{content:"";position:absolute;inset:.25em;border:1px solid rgba(181,138,46,.7)}
 .frame::after{content:"";position:absolute;left:50%;top:-.42em;width:.62em;height:.62em;margin-left:-.31em;transform:rotate(45deg);background:#B58A2E;box-shadow:0 0 0 .18em #F6EBCB}
 
-.eyebrow{display:flex;align-items:center;justify-content:center;gap:.7em;margin:0;font:700 .72em/1 'Cinzel',serif;letter-spacing:.26em;color:#8A5F12}
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:.7em;margin:0;font:700 .72em/1 'Cinzel',serif;letter-spacing:.26em;color:#6B4608}
 .eyebrow .cross{width:.95em;height:1.3em;flex:none}
 .eyebrow::before,.eyebrow::after{content:"";width:2.4em;height:1px;background:linear-gradient(90deg,transparent,#B58A2E)}
 .eyebrow::after{background:linear-gradient(270deg,transparent,#B58A2E)}
@@ -57,9 +57,9 @@ h1{margin:.4em 0 0;font:700 1.55em/1.1 'Cinzel',serif;letter-spacing:.07em;color
 .rule::after{background:linear-gradient(270deg,transparent,#B58A2E)}
 .rule span{width:.45em;height:.45em;transform:rotate(45deg);background:#B58A2E}
 
-blockquote{margin:0 0 .6em;padding:0}
+blockquote{margin:0 0 .5em;padding:0}
 blockquote p{margin:0 0 .15em;font-size:.98em;line-height:1.25;font-style:italic;font-weight:500}
-cite{display:block;font:500 .62em 'Cinzel',serif;letter-spacing:.14em;color:#8A5F12;font-style:normal}
+cite{display:block;font:700 .64em 'Cinzel',serif;letter-spacing:.14em;color:#5E3C06;font-style:normal}
 
 /* Tarjeta de la fecha: es lo primero que debe verse */
 .event{width:100%;margin:0 0 .5em;padding:.55em .8em .5em;border-radius:.35em;border:1px solid #C9A24D;background:radial-gradient(ellipse at 50% 0%,#3A2A19 0%,#1B120A 78%);box-shadow:0 .3em .9em rgba(60,35,5,.45),inset 0 0 0 .22em #1B120A,inset 0 0 0 .27em rgba(201,162,77,.55)}
@@ -68,21 +68,21 @@ cite{display:block;font:500 .62em 'Cinzel',serif;letter-spacing:.14em;color:#8A5
 .ev-day{margin-top:.15em!important;font:700 1.8em/1.1 'Cormorant Garamond',Georgia,serif;color:#F7E4A6;text-shadow:0 0 .8em rgba(201,162,77,.35)}
 .ev-time{margin-top:.1em!important;font:700 1em/1.2 'Cinzel',serif;letter-spacing:.2em;color:#FFF3CC}
 .ev-place{margin-top:.4em!important;font:500 .8em/1.25 'Cormorant Garamond',Georgia,serif;font-style:italic;color:#D9C48F}
-.ev-dress{margin-top:.2em!important;font:italic 500 .72em/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:.02em;color:#E8D49A}
+.ev-dress{margin-top:.2em!important;font:italic 700 .74em/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:.03em;color:#FFFFFF;text-shadow:0 0 .6em rgba(255,255,255,.35)}
 
-.pledge{margin:0 0 .5em;font-size:1em;line-height:1.28;font-weight:500}
+.pledge{margin:0 0 .4em;font-size:1em;line-height:1.28;font-weight:500}
 .pledge strong{font-weight:700}
 
-.rsvp{margin:0;padding:.85em 1.7em;max-width:100%;font:700 .78em/1 'Cinzel',serif;letter-spacing:.18em;color:#2A1A0B;background:linear-gradient(180deg,#E9C877,#C79A3A);border:1px solid #8A5F12;border-radius:999px;box-shadow:0 .25em .7em rgba(90,55,5,.4),inset 0 1px 0 rgba(255,255,255,.55);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,filter .2s}
+.rsvp{margin:0;padding:.9em 2em;max-width:100%;font:700 .88em/1 'Cinzel',serif;letter-spacing:.16em;color:#2A1A0B;background:linear-gradient(180deg,#E9C877,#C79A3A);border:1px solid #8A5F12;border-radius:999px;box-shadow:0 .3em .9em rgba(90,55,5,.5),inset 0 1px 0 rgba(255,255,255,.6);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,filter .2s}
 .rsvp:hover{filter:brightness(1.06)}
 .rsvp:active{transform:scale(.97)}
 .rsvp:focus-visible{outline:2px solid #3B2A1A;outline-offset:3px}
 .rsvp.done{background:#3B2A1A;color:#F3DFA0;border-color:#C9A24D;box-shadow:none;cursor:default}
-.sign{margin:.45em 0 0;font-size:.95em;line-height:1.2;font-style:italic}
+.sign{margin:.35em 0 0;font-size:.95em;line-height:1.2;font-style:italic}
 .sign b{font-style:normal;font-weight:700}
 
 /* Botón para cerrar: fuera de la hoja, debajo, para no restarle espacio */
-.letter>.again{position:absolute;left:50%;top:calc(100% + 1.4em);transform:translateX(-50%);margin:0;padding:12px 20px;font:700 11px 'Cinzel',serif;letter-spacing:.16em;white-space:nowrap;color:#E8D9B5;background:rgba(20,14,9,.6);border:1px solid rgba(201,162,77,.7);border-radius:999px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.letter>.again{position:absolute;left:50%;top:calc(100% + 1.4em);transform:translateX(-50%);margin:0;padding:12px 18px;font:500 10px 'Cinzel',serif;letter-spacing:.16em;white-space:nowrap;color:rgba(232,217,181,.6);background:none;border:1px solid rgba(201,162,77,.3);border-radius:999px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .again:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 /* Accesibilidad: sin animaciones para quien las reduce */
