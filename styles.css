@@ -40,7 +40,7 @@ body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50
 
 /* Hoja de pergamino: SIEMPRE cuadrada. Todo se mide en "em" y el em depende del ancho,
    así la carta escala completa y mantiene su forma en cualquier pantalla. */
-.letter{--lw:min(92vw,520px);font-size:calc(var(--lw)*.039);aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1.15em 1.9em;color:var(--ink);text-align:center;border-radius:4px;background:radial-gradient(ellipse at 50% 38%,#FDF6E2 0%,#F3E6C3 66%,#E2CD98 100%);box-shadow:inset 0 0 46px rgba(120,80,20,.32),0 14px 34px rgba(0,0,0,.55)}
+.letter{--lw:min(92vw,520px);font-size:calc(var(--lw)*.039);aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1em 1.9em;color:var(--ink);text-align:center;border-radius:4px;background:radial-gradient(ellipse at 50% 38%,#FDF6E2 0%,#F3E6C3 66%,#E2CD98 100%);box-shadow:inset 0 0 46px rgba(120,80,20,.32),0 14px 34px rgba(0,0,0,.55)}
 .letter::before{content:"";position:absolute;inset:0;border-radius:4px;pointer-events:none;mix-blend-mode:multiply;opacity:.35;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/><feColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .15 0 0 0 .5 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>")}
 .letter>*{position:relative;max-width:100%}
 .letter>.frame{position:absolute;inset:.6em;border:2px solid rgba(138,95,18,.75);border-radius:2px;pointer-events:none;max-width:none}
@@ -62,14 +62,15 @@ blockquote p{margin:0 0 .15em;font-size:.98em;line-height:1.25;font-style:italic
 cite{display:block;font:500 .62em 'Cinzel',serif;letter-spacing:.14em;color:#8A5F12;font-style:normal}
 
 /* Tarjeta de la fecha: es lo primero que debe verse */
-.event{width:100%;margin:0 0 .65em;padding:.65em .8em .6em;border-radius:.35em;border:1px solid #C9A24D;background:radial-gradient(ellipse at 50% 0%,#3A2A19 0%,#1B120A 78%);box-shadow:0 .3em .9em rgba(60,35,5,.45),inset 0 0 0 .22em #1B120A,inset 0 0 0 .27em rgba(201,162,77,.55)}
+.event{width:100%;margin:0 0 .5em;padding:.55em .8em .5em;border-radius:.35em;border:1px solid #C9A24D;background:radial-gradient(ellipse at 50% 0%,#3A2A19 0%,#1B120A 78%);box-shadow:0 .3em .9em rgba(60,35,5,.45),inset 0 0 0 .22em #1B120A,inset 0 0 0 .27em rgba(201,162,77,.55)}
 .event p{margin:0}
 .ev-label{font:700 .62em/1.5 'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A24D}
 .ev-day{margin-top:.15em!important;font:700 1.8em/1.1 'Cormorant Garamond',Georgia,serif;color:#F7E4A6;text-shadow:0 0 .8em rgba(201,162,77,.35)}
 .ev-time{margin-top:.1em!important;font:700 1em/1.2 'Cinzel',serif;letter-spacing:.2em;color:#FFF3CC}
 .ev-place{margin-top:.4em!important;font:500 .8em/1.25 'Cormorant Garamond',Georgia,serif;font-style:italic;color:#D9C48F}
+.ev-dress{margin-top:.2em!important;font:italic 500 .72em/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:.02em;color:#E8D49A}
 
-.pledge{margin:0 0 .6em;font-size:1em;line-height:1.28;font-weight:500}
+.pledge{margin:0 0 .5em;font-size:1em;line-height:1.28;font-weight:500}
 .pledge strong{font-weight:700}
 
 .rsvp{margin:0;padding:.85em 1.7em;max-width:100%;font:700 .78em/1 'Cinzel',serif;letter-spacing:.18em;color:#2A1A0B;background:linear-gradient(180deg,#E9C877,#C79A3A);border:1px solid #8A5F12;border-radius:999px;box-shadow:0 .25em .7em rgba(90,55,5,.4),inset 0 1px 0 rgba(255,255,255,.55);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,filter .2s}
@@ -77,7 +78,7 @@ cite{display:block;font:500 .62em 'Cinzel',serif;letter-spacing:.14em;color:#8A5
 .rsvp:active{transform:scale(.97)}
 .rsvp:focus-visible{outline:2px solid #3B2A1A;outline-offset:3px}
 .rsvp.done{background:#3B2A1A;color:#F3DFA0;border-color:#C9A24D;box-shadow:none;cursor:default}
-.sign{margin:.55em 0 0;font-size:.95em;line-height:1.2;font-style:italic}
+.sign{margin:.45em 0 0;font-size:.95em;line-height:1.2;font-style:italic}
 .sign b{font-style:normal;font-weight:700}
 
 /* Botón para cerrar: fuera de la hoja, debajo, para no restarle espacio */

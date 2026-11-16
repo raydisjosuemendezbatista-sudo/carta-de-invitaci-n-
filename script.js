@@ -18,8 +18,14 @@ const CONFIG = {
     // Para el botón «Apartar la fecha» (hora de República Dominicana)
     start: "2026-11-28T18:00",
     end: "2026-11-28T20:00",
-    calendarTitle: "Culto especial de bienvenida – La Luz Verdadera"
+    calendarTitle: "Culto especial de bienvenida – La Luz Verdadera",
+    // Color de camiseta para ese día
+    dress: "Ese día: camiseta blanca o negra"
   },
+
+  // WhatsApp que recibe las confirmaciones (código de país + número, sin + ni espacios)
+  whatsapp: "18493508676",
+  whatsappMessage: "Hola, confirmo que sí estaré ahí en el culto de bienvenida del sábado 28 de noviembre.",
 
   // Texto de compromiso
   pledgeStrong: "Nos comprometemos a recibirte con amor.",
@@ -51,6 +57,7 @@ const CONFIG = {
   $("evDay").textContent = E.day;
   $("evTime").textContent = E.time;
   $("evPlace").textContent = E.place;
+  $("evDress").textContent = E.dress;
   $("pledgeStrong").textContent = CONFIG.pledgeStrong;
   $("pledgeText").textContent = CONFIG.pledgeText;
   $("rsvp").textContent = CONFIG.rsvp;
@@ -61,30 +68,53 @@ const CONFIG = {
   function toUTC(local) { // la hora local de República Dominicana es UTC-4 todo el año
     return new Date(local + ":00-04:00").toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   }
+  // Texto para .ics: escapa comas, punto y coma y saltos de línea
+  const esc = (t) => String(t).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+  // Las líneas del .ics no pueden pasar de 75 bytes: se parten con un espacio al inicio de la siguiente
+  function fold(line) {
+    const enc = new TextEncoder(), parts = [];
+    let cur = "", len = 0, limit = 75;
+    for (const ch of line) {
+      const n = enc.encode(ch).length;
+      if (len + n > limit) { parts.push(cur); cur = ""; len = 0; limit = 74; }
+      cur += ch; len += n;
+    }
+    parts.push(cur);
+    return parts.join("\r\n ");
+  }
   function downloadCalendar() {
+    const desc = "Estás invitado al culto especial de bienvenida. " + CONFIG.pledgeText + " " + E.dress + ". " + CONFIG.churchName + ".";
     const lines = [
-      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//La Luz Verdadera//Invitacion//ES", "CALSCALE:GREGORIAN",
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//La Luz Verdadera//Invitacion//ES", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
       "BEGIN:VEVENT",
       "UID:bienvenida-" + E.start.replace(/\D/g, "") + "@laluzverdadera",
-      "DTSTAMP:" + toUTC(new Date().toISOString().slice(0, 16)),
+      "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""),
       "DTSTART:" + toUTC(E.start), "DTEND:" + toUTC(E.end),
-      "SUMMARY:" + E.calendarTitle,
-      "LOCATION:" + E.place + ", República Dominicana",
-      "DESCRIPTION:Estás invitado. Aparta esta fecha y ven con el corazón dispuesto.",
-      "BEGIN:VALARM", "TRIGGER:-PT2H", "ACTION:DISPLAY", "DESCRIPTION:Hoy: " + E.calendarTitle, "END:VALARM",
+      "SUMMARY:" + esc(E.calendarTitle),
+      "LOCATION:" + esc(E.place + ", República Dominicana"),
+      "DESCRIPTION:" + esc(desc),
+      "STATUS:CONFIRMED", "TRANSP:OPAQUE", "SEQUENCE:0",
+      "BEGIN:VALARM", "TRIGGER:-PT2H", "ACTION:DISPLAY", "DESCRIPTION:" + esc("Hoy a las " + E.time + ": " + E.calendarTitle), "END:VALARM",
       "END:VEVENT", "END:VCALENDAR"
-    ];
-    const blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+    ].map(fold);
+    const blob = new Blob([lines.join("\r\n") + "\r\n"], { type: "text/calendar;charset=utf-8" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob); a.download = "culto-de-bienvenida.ics";
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
   }
+  function openWhatsApp() {
+    const url = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.whatsappMessage);
+    const a = document.createElement("a");
+    a.href = url; a.target = "_blank"; a.rel = "noopener";
+    document.body.appendChild(a); a.click(); a.remove();
+  }
   $("rsvp").addEventListener("click", () => {
     const b = $("rsvp");
-    if (b.classList.contains("done")) return;
+    const first = !b.classList.contains("done");
     b.classList.add("done"); b.textContent = CONFIG.rsvpDone;
-    try { downloadCalendar(); } catch (e) { /* si el dispositivo no lo permite, el compromiso igual queda hecho */ }
+    if (first) { try { downloadCalendar(); } catch (e) { /* si el dispositivo no lo permite, la confirmación igual se envía */ } }
+    openWhatsApp(); // envía la confirmación al WhatsApp de la iglesia (también si tocan de nuevo)
   });
 
   // Calcula tamaños según la pantalla (escala inicial, subida y posición final)
